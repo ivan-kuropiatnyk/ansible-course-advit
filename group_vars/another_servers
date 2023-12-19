@@ -1,0 +1,6 @@
+---
+ansible_user			: osboxes 
+ansible_ssh_private_key_file    : /home/ivankurop/.ssh/id_rsa
+ansible_become                  : yes
+ansible_become_method           : sudo
+ansible_become_pass             : "qweszxc"

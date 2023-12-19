@@ -1,0 +1,24 @@
+---
+- name: Lesson19-01
+  hosts: db_servers
+  any_errors_fatal: true
+  become: yes
+
+  tasks:
+  - name: PING TEST
+    ping:
+
+  - name: Task Number 1
+    apt: name=treee state=latest
+    ignore_errors: yes
+
+  - name: Task Number 2
+    shell: cat /home/osboxes/myText.txt
+    register: results
+
+  - name: Task Number 3
+    shell: echo Privet Mir!
+    register: results2
+
+  - debug:
+      var: results2

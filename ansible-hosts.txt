@@ -1,0 +1,28 @@
+[local_server]
+localhost ansible_host=127.0.0.1
+vb-ub22 ansible_host=172.17.20.191
+
+
+[web_servers]
+ubuntu22-server-01 ansible_host=172.17.20.189 owner=OSBOXES
+ubuntu22-server-02 ansible_host=172.17.20.188 owner=OSBOXES.org
+
+[zabbix_servers]
+pnet-zabbix-01 ansible_host=172.17.20.185  owner=ZABBIX
+
+[db_servers]
+pnet-ub22-184 ansible_host=172.17.20.184  owner=Vasia
+pnet-ub22-183 ansible_host=172.17.20.183
+
+[another_servers]
+pnet-ub22-186 ansible_host=172.17.20.186
+pnet-ub22-187 ansible_host=172.17.20.187
+
+[ubuntu_servers:children]
+another_servers
+db_servers
+web_servers
+
+[new0608_servers:children]
+another_servers
+db_servers

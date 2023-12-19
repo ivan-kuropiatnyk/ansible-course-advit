@@ -1,0 +1,31 @@
+---
+- name: Lesson20-01
+  hosts: db_servers
+  become: yes
+
+  vars:
+    MyPasswd: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          36313761663635613964336233346563646563626139653334393438656163333338363063663337
+          3035353131333163613434353735313936613036323861300a383239303561616632643665396636
+          36383030313239633635666633303733666538303138353932343338356234346134373663663634
+          3637623238383739360a333036373937633363393639653232393432376433386239313638373361
+          6665
+
+  tasks:
+  - name: PING TEST
+    ping:
+
+  - name: Install Tree
+    apt: name=tree state=latest
+    ignore_errors: yes
+
+  - name: Create Config File
+    copy:
+      dest: "/home/osboxes/myText.txt"
+      content: |
+        port = 9092
+        log  = 7days
+        home = "/opt/kafka/bin"
+        user = osboxes
+        password = {{ MyPasswd }}

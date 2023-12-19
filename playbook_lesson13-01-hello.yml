@@ -1,0 +1,24 @@
+---
+- name: Say Hello to All
+  hosts: pnet-ub22-186
+  become: yes
+
+  tasks:
+  - name: Say Hello
+    debug: msg="Hello {{ item }}"
+    loop:
+        - "Vasia"
+        - "Petia"
+        - "Masha"
+        - "Alena"
+
+  - name: Loop until example
+    shell: echo -n Z >> lesson13.txt && cat lesson13.txt
+    register: output
+    delay: 2
+    retries: 10
+    until: output.stdout.find("ZZZZ") == false
+
+  - name: Print final output
+    debug:
+      var: output.stdout

@@ -1,0 +1,14 @@
+---
+- name: Install Apache and Upload my Home Page
+  hosts: db_servers
+  become: yes
+
+  vars:
+    mytext: "Privet ot IP4IT"
+
+  tasks:
+  - name: ping test
+    ping:
+
+  - importe: playbook_lesson17-tasks-create_folders.yml
+  - importe: playbook_lesson17-tasks-create_files.yml mytext="Hello from Vancouver"

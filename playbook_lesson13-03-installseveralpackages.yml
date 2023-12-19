@@ -1,0 +1,16 @@
+---
+- name: Install Apache and Upload my Home Page
+  hosts: web_servers
+  become: yes
+
+  vars:
+    source_folder: /home/ivankurop/ansible/MyWebSite
+    dest_folder: /var/www/html/
+
+  tasks:
+  - name: install many packeges
+    apt: name={{ item }} state=latest
+    with_items:
+        - htop
+        - tree
+        - vim

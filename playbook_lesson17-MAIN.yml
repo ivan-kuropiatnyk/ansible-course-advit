@@ -1,0 +1,39 @@
+---
+- name: Install Apache and Upload my Home Page
+  hosts: db_servers
+  become: yes
+
+  vars:
+    mytext: "Privet ot IP4IT"
+
+  tasks:
+  - name: ping test
+    ping:
+
+  - name: Create Folder 1
+    file:
+     path: /home/secret/folder1
+     state: directory
+     mode: 0755
+
+  - name: Create Folder 2
+    file:
+     path: /home/secret/folder2
+     state: directory
+     mode: 0755
+
+  - name: CREATE FILE 1
+    copy:
+     dest: /home/secret/file1
+     content:
+       Text Line1, in file1
+       Text Line2, in file1
+       Text Line3, {{ mytext }}
+
+  - name: CREATE FILE 2
+    copy:
+     dest: /home/secret/file2
+     content:
+       Text Line1, in file2
+       Text Line2, in file2
+       Text Line3, {{ mytext }}
